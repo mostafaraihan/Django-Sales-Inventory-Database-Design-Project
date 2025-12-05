@@ -36,3 +36,14 @@ class Customer(models.Model):
     username = models.ForeignKey(User, on_delete=models.CASCADE,related_name='customers')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+class Invoice(models.Model):
+    total = models.DecimalField(max_digits=10, decimal_places=2)
+    discount = models.DecimalField(max_digits=10, decimal_places=2)
+    vat = models.DecimalField(max_digits=10, decimal_places=2)
+    payment = models.DecimalField(max_digits=10, decimal_places=2)
+    payment_due = models.DecimalField(max_digits=10, decimal_places=2)
+    username = models.ForeignKey(User, on_delete=models.CASCADE,related_name='invoices')
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE,related_name='invoices')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
