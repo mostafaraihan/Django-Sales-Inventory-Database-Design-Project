@@ -121,7 +121,7 @@ class InvoiceProduct(models.Model):
 ```
 Here’s your **Getting Started** section formatted for direct copy-paste as a clean one-page block:
 
-## ▶️ Database Diagram 
+## ▶️ Database Output Diagram 
 ![Database Diagram](https://raw.githubusercontent.com/mostafaraihan/Django-Sales-Inventory-Database-Design-Project/master/output.png)
 
 ## ▶️ Getting Started
