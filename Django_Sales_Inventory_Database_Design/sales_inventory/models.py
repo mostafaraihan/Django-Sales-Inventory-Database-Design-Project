@@ -29,6 +29,7 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+
 class Customer(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
@@ -36,6 +37,7 @@ class Customer(models.Model):
     username = models.ForeignKey(User, on_delete=models.CASCADE,related_name='customers')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
 
 class Invoice(models.Model):
     total = models.DecimalField(max_digits=10, decimal_places=2)
@@ -45,5 +47,16 @@ class Invoice(models.Model):
     payment_due = models.DecimalField(max_digits=10, decimal_places=2)
     username = models.ForeignKey(User, on_delete=models.CASCADE,related_name='invoices')
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE,related_name='invoices')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+class InvoiceProduct(models.Model):
+    qty = models.IntegerField()
+    sale_price = models.DecimalField(max_digits=10, decimal_places=2)
+    username = models.ForeignKey(User, on_delete=models.CASCADE,related_name='invoice_products')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE,related_name='invoice_products')
+    invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE,related_name='invoice_products')
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE,related_name='invoice_products')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
